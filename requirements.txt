@@ -1,0 +1,9 @@
+einops
+safetensors
+numpy
+scipy
+opencv-python
+imageio[ffmpeg]
+accelerate>=0.25.0
+diffusers>=0.30.1,<=0.31.0
+transformers==4.46.2
