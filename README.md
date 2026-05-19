@@ -6,11 +6,12 @@ ComfyUI is not bundled. Prepare a working ComfyUI environment first, then clone 
 
 ## Installation
 
+Clone this repository into ComfyUI's `custom_nodes` directory:
+
 ```bash
 cd /path/to/ComfyUI/custom_nodes
 git clone https://github.com/Foxerity/ComfyUI-SVOR.git
 cd ComfyUI-SVOR
-bash setup_comfyui.sh
 ```
 
 Expected layout:
@@ -26,7 +27,15 @@ ComfyUI/
         +-- setup_comfyui.sh
 ```
 
-The setup script installs the SVOR PyTorch stack first, then this package's dependencies, downloads missing weights, and imports `comfyui_svor/svor_workflow_ui.json` into ComfyUI. It does not install or start ComfyUI.
+### Linux / WSL
+
+Use the setup script from the `ComfyUI-SVOR` directory:
+
+```bash
+bash setup_comfyui.sh
+```
+
+It installs the SVOR PyTorch stack, installs this package's dependencies, downloads missing weights, and imports `comfyui_svor/svor_workflow_ui.json` into ComfyUI. It does not install or start ComfyUI.
 
 Useful options:
 
@@ -35,7 +44,7 @@ bash setup_comfyui.sh --skip-install
 bash setup_comfyui.sh --skip-torch
 bash setup_comfyui.sh --install-flash-attn
 bash setup_comfyui.sh --skip-weights
-bash setup_comfyui.sh --models-dir /mnt/data/svor_models
+bash setup_comfyui.sh --models-dir /path/to/svor_models
 PYTHON_BIN=/path/to/python bash setup_comfyui.sh
 ```
 
@@ -45,9 +54,16 @@ By default, the PyTorch versions follow the original SVOR setup:
 torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0
 ```
 
-## Weights
+### Windows
 
-By default, weights are placed under:
+The bash script is intended for Linux/WSL. On native Windows, install dependencies in the Python environment used by ComfyUI:
+
+```powershell
+python -m pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0
+python -m pip install -r requirements.txt
+```
+
+Then prepare the weights manually under:
 
 ```text
 ComfyUI/custom_nodes/ComfyUI-SVOR/models/
@@ -56,7 +72,19 @@ ComfyUI/custom_nodes/ComfyUI-SVOR/models/
 +-- remove_model_stage2.safetensors
 ```
 
-If the machine cannot access the model hosts, place the files manually under `models/`, or pass an absolute directory with `--models-dir`.
+`Wan2.1-VACE-1.3B/` is the base model directory. The two `remove_model_stage*.safetensors` files are [SVOR LoRA weights](https://huggingface.co/HigherHu/SVOR). If you keep weights elsewhere, set the `models_dir` field in the `SVOR Model Loader` node to that absolute path.
+
+To import the workflow manually, copy:
+
+```text
+ComfyUI-SVOR/comfyui_svor/svor_workflow_ui.json
+```
+
+to:
+
+```text
+ComfyUI/user/default/workflows/svor_workflow_ui.json
+```
 
 ## Usage
 
