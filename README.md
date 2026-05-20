@@ -142,19 +142,19 @@ Saves generated frames as an MP4 file and shows a preview in ComfyUI.
 
 The default output directory is `samples/SVOR/`.
 
-## 致谢
+## Acknowledgements
 
-- 原始项目：[SVOR](https://github.com/xiaomi-research/svor), by Xiaomi Research
-- 论文全称：From Ideal to Real: Stable Video Object Removal under Imperfect Conditions
-- ComfyUI 集成：[ComfyUI-SVOR](https://github.com/Foxerity/ComfyUI-SVOR)
+- Original project: [SVOR](https://github.com/xiaomi-research/svor), by Xiaomi Research
+- Paper: From Ideal to Real: Stable Video Object Removal under Imperfect Conditions
+- ComfyUI integration: [ComfyUI-SVOR](https://github.com/Foxerity/ComfyUI-SVOR)
 
 ## License
 
-本项目基于 Apache License 2.0 发布，继承自 Xiaomi Research 的 SVOR 项目协议。
+This project is released under the Apache License 2.0, following the license of the Xiaomi Research SVOR project.
 
-## 引用
+## Citation
 
-如果本项目或 SVOR 对你的工作有帮助，请引用原论文：
+If this project or SVOR helps your work, please cite the original paper:
 
 ```bibtex
 @article{hu2026svor,
